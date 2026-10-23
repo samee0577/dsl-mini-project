@@ -7,3 +7,4 @@ joblib
 scikit-fuzzy
 spacy
 networkx
+pytest

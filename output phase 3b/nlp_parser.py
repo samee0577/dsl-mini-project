@@ -118,18 +118,6 @@ def parse_command(command):
             "tokens": tokens
         }
 
-    if appliance == "ac":
-        mode = find_ac_mode(text)
-        if mode is not None:
-            return {
-                "command": command, "intent": "set_mode",
-                "appliance": "ac", "action": "set_mode",
-                "value": mode, "confidence": 0.98,
-                "needs_clarification": False,
-                "message": f"AC mode identified: {mode}.",
-                "tokens": tokens
-            }
-
     turn_on = contains_phrase(text, POWER_ON_PHRASES)
     turn_off = contains_phrase(text, POWER_OFF_PHRASES)
 
@@ -141,6 +129,18 @@ def parse_command(command):
             "message": "The command contains conflicting power actions.",
             "tokens": tokens
         }
+
+    if appliance == "ac":
+        mode = find_ac_mode(text)
+        if mode is not None:
+            return {
+                "command": command, "intent": "set_mode",
+                "appliance": "ac", "action": "set_mode",
+                "value": mode, "confidence": 0.98,
+                "needs_clarification": False,
+                "message": f"AC mode identified: {mode}.",
+                "tokens": tokens
+            }
 
     if turn_on or turn_off:
         value = "on" if turn_on else "off"

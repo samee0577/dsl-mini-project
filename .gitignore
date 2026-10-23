@@ -64,3 +64,8 @@ mongod.log
 output/
 results/
 data/*.json
+HEMS/__pycache__/
+prd for phase 5.odt
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
